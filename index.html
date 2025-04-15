@@ -48,12 +48,14 @@
       </div>
     </section>
 
-    <section>
-      <div>
-        <input type="text" id="word-input" placeholder="Enter a word" />
-        <button id="fetch-button">Fetch Definition</button>
-        <p id="definition-display"></p>
-      </div>
+    <section class="resources">
+      <h2>Study Resources</h2>
+      <div id="resourceGrid" class="resource-grid"></div>
+    </section>
+
+    <section class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search study resources..." />
+      <button id="searchBtn">🔍 Search</button>
     </section>
 
     <section class="sessions">
@@ -65,7 +67,15 @@
         <textarea id="sessionNotes" placeholder="Notes"></textarea>
         <button type="submit">➕ Add Session</button>
       </form>
-      <div id="sessionsContainer"></div>
+      <div id="sessionsContainer">
+        <!-- Add content here if needed -->
+        <p>No sessions added yet. Start by creating one!</p>
+      </div>
+    </section>
+
+    <section class="favorites">
+      <h2>⭐ Your Favorites</h2>
+      <div id="favoritesContainer" class="favorites-grid"></div>
     </section>
   </main>
 

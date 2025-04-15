@@ -20,6 +20,7 @@ export function addSession(session) {
   // Render study sessions to a target container
   export function renderSessions(containerId) {
     const container = document.getElementById(containerId);
+    container.className = "sessions-grid"; // Add grid class here
     const sessions = getSessions();
     container.innerHTML = "";
   
@@ -41,8 +42,7 @@ export function addSession(session) {
     });
   
     // Attach delete button events
-    const deleteBtns = container.querySelectorAll(".delete-btn");
-    deleteBtns.forEach(btn => {
+    container.querySelectorAll(".delete-btn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const index = e.target.dataset.index;
         deleteSession(index);
@@ -50,4 +50,3 @@ export function addSession(session) {
       });
     });
   }
-  

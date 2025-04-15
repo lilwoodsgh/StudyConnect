@@ -1,16 +1,18 @@
 import { setupModalListeners, openModal } from './modal.js';
-import { addSession, renderSessions } from './sessionmanager.js'; // Adjusted casing to match the actual file name
-import { renderResources } from './dom.js'; // Added import for renderResources
+import { addSession, renderSessions } from './sessionmanager.js';
+import { renderResources, searchResources } from './dom.js';
+import { fetchWordAsResource } from './api.js';
+import { addFavorite, renderFavorites } from './favorites.js';
 
 // Select DOM elements
 const menuToggle = document.getElementById('menu-toggle');
 const mainNav = document.getElementById('main-nav');
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
-const fetchButton = document.getElementById('fetch-button'); // Button to fetch definition
-const wordInput = document.getElementById('word-input'); // Input field for the word
-const definitionDisplay = document.getElementById('definition-display'); // Element to display the definition
-const sessionsContainerId = 'sessionsContainer'; // ID of the container for sessions
+const fetchButton = document.getElementById('fetch-button');
+const wordInput = document.getElementById('word-input');
+const definitionDisplay = document.getElementById('definition-display');
+const sessionsContainerId = 'sessionsContainer';
 
 // Initialize modal listeners
 setupModalListeners();
@@ -23,43 +25,58 @@ menuToggle.addEventListener('click', () => {
 // Dark mode toggle
 themeToggle.addEventListener('click', () => {
   body.classList.toggle('dark-mode');
-
   const isDark = body.classList.contains('dark-mode');
   localStorage.setItem('studyConnectDarkMode', isDark ? 'enabled' : 'disabled');
-
   updateThemeIcon(isDark);
 });
 
 // Load saved dark mode preference on page load
 document.addEventListener('DOMContentLoaded', () => {
-  // Load saved dark mode preference
   if (localStorage.getItem('studyConnectDarkMode') === 'enabled') {
     body.classList.add('dark-mode');
     updateThemeIcon(true);
   }
 
-  // Example test to open modal with the 'M' key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'm') {
-      openModal("<h2>Modal Test</h2><p>This is a test modal opened with the 'M' key.</p>");
+  // Initialize resources and favorites
+  let resourceList = [
+    { title: "Article: Study Smarter", description: "Time management and productivity techniques." },
+    { title: "Video: Focus Tips", description: "Strategies to stay focused during study sessions." }
+  ];
+
+  renderResources(resourceList);
+  renderFavorites("favoritesContainer");
+
+  // Handle search button click
+  document.getElementById("searchBtn").addEventListener("click", async () => {
+    const query = document.getElementById("searchInput").value.trim();
+    if (!query) return;
+
+    const newResource = await fetchWordAsResource(query);
+    if (newResource) {
+      resourceList.unshift(newResource);
+      renderResources(resourceList);
+    }
+  });
+
+  // Handle clicking a resource button to add to favorites
+  document.getElementById("resourceGrid").addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+      const card = e.target.closest(".resource-card");
+      const title = card.querySelector("h3").textContent;
+      const description = card.querySelector("p").textContent;
+
+      const resource = { title, description };
+      addFavorite(resource);
+      renderFavorites("favoritesContainer");
     }
   });
 
   // Render existing study sessions
   renderSessions("sessionsContainer");
 
-  // Render study resources with test data
-  const testResources = [
-    { title: "Article: Study Smarter, Not Harder", description: "Tips for effective time management and productivity techniques." },
-    { title: "Definition: Metacognition", description: "The awareness and understanding of one's own thought processes." },
-    { title: "Video: 10-Minute Study Break Ideas", description: "Quick activities to recharge during intense study sessions." }
-  ];
-  renderResources(testResources);
-
   // Handle adding a new study session
   document.getElementById("sessionForm").addEventListener("submit", (e) => {
     e.preventDefault();
-
     const title = document.getElementById("sessionTitle").value.trim();
     const date = document.getElementById("sessionDate").value;
     const notes = document.getElementById("sessionNotes").value.trim();
@@ -68,9 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const newSession = { title, date, notes };
       addSession(newSession);
       renderSessions("sessionsContainer");
-      e.target.reset(); // Clear the form
+      e.target.reset();
     } else {
       openModal('<p>Please provide both a title and a date for the session.</p>');
+    }
+  });
+
+  // Example test: open modal with the 'M' key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'm') {
+      openModal("<h2>Modal Test</h2><p>This is a test modal opened with the 'M' key.</p>");
     }
   });
 });
@@ -80,28 +104,26 @@ function updateThemeIcon(isDark) {
   themeToggle.textContent = isDark ? '☀️' : '🌙';
 }
 
-// Fetch and display the definition of a word
-fetchButton.addEventListener('click', () => {
+// ✅ REPLACEMENT: Fetch and display definition using fetchWordAsResource
+fetchButton.addEventListener('click', async () => {
   const word = wordInput.value.trim();
-
   if (!word) {
     definitionDisplay.textContent = 'Please enter a word.';
     return;
   }
 
-  fetchDefinition(word)
-    .then(data => {
-      if (data && data.definition) {
-        definitionDisplay.textContent = `Definition of "${word}": ${data.definition}`;
-        openModal(`Definition of "${word}": ${data.definition}`); // Open modal with definition
-      } else {
-        definitionDisplay.textContent = `No definition found for "${word}".`;
-        openModal(`No definition found for "${word}".`); // Open modal with error message
-      }
-    })
-    .catch(error => {
-      console.error("Fetch error:", error);
-      definitionDisplay.textContent = 'An error occurred while fetching the definition.';
-      openModal('An error occurred while fetching the definition.'); // Open modal with error message
-    });
+  try {
+    const result = await fetchWordAsResource(word);
+    if (result) {
+      definitionDisplay.textContent = `${result.description}`;
+      openModal(`<h3>${result.title}</h3><p>${result.description}</p>`);
+    } else {
+      definitionDisplay.textContent = `No definition found for "${word}".`;
+      openModal(`No definition found for "${word}".`);
+    }
+  } catch (error) {
+    console.error("Fetch error:", error);
+    definitionDisplay.textContent = 'An error occurred while fetching the definition.';
+    openModal('An error occurred while fetching the definition.');
+  }
 });

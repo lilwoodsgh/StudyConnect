@@ -14,4 +14,9 @@ export function renderResources(resources) {
       grid.appendChild(card);
     });
   }
-  
+
+export function searchResources(resources, query) {
+  return resources.filter(resource =>
+    resource.title.toLowerCase().includes(query.toLowerCase())
+  );
+}

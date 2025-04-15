@@ -218,6 +218,12 @@
     margin-top: 0.5rem;
   }
 
+  .sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
   /* Study Resources Section */
   .resources {
     padding: 1.5rem;
@@ -268,4 +274,83 @@
   body.dark-mode .resource-card {
     background-color: #1e293b;
     color: #f1f5f9;
+  }
+
+  /* Favorites Section */
+  .favorites {
+    padding: 1.5rem;
+  }
+
+  .favorites h2 {
+    color: #305f72;
+    margin-bottom: 1rem;
+  }
+
+  .favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .favorites-card {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .favorites-card h3 {
+    color: #305f72;
+    margin-bottom: 0.5rem;
+  }
+
+  .favorites-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .favorites-card button {
+    background-color: #305f72;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .favorites-card button:hover {
+    background-color: #25495c;
+  }
+
+  body.dark-mode .favorites-card {
+    background-color: #1e293b;
+    color: #f1f5f9;
+  }
+
+  /* Search Bar Section */
+  .search-bar {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  #searchInput {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  #searchBtn {
+    background-color: #305f72;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #searchBtn:hover {
+    background-color: #25495c;
   }
