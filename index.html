@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyConnect | Home</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  <script type="module" src="script/app.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">📚 StudyConnect</div>
+    <nav>
+      <button id="menu-toggle">☰</button>
+      <ul id="main-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Study Sessions</a></li>
+        <li><a href="#">Favorites</a></li>
+        <li><a href="#" id="theme-toggle">🌙</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome to StudyConnect</h1>
+      <p>Your digital workspace for study sessions, resources, and productivity tools.</p>
+    </section>
+
+    <section class="features-grid">
+      <div class="card">
+        <h2>📖 Search Resources</h2>
+        <p>Lookup study notes, definitions, and articles using integrated APIs.</p>
+      </div>
+      <div class="card">
+        <h2>📅 Manage Study Sessions</h2>
+        <p>Create, schedule, and assign resources to your custom study sessions.</p>
+      </div>
+      <div class="card">
+        <h2>⭐ Save Favorites</h2>
+        <p>Bookmark your favorite articles and definitions for quick access.</p>
+      </div>
+      <div class="card">
+        <h2>🎨 Dark Mode</h2>
+        <p>Switch between light and dark themes to suit your mood.</p>
+      </div>
+    </section>
+
+    <section>
+      <div>
+        <input type="text" id="word-input" placeholder="Enter a word" />
+        <button id="fetch-button">Fetch Definition</button>
+        <p id="definition-display"></p>
+      </div>
+    </section>
+
+    <section class="sessions">
+      <h2>Your Study Sessions</h2>
+      <form id="sessionForm">
+        <input type="text" id="sessionTitle" placeholder="Session Title" required />
+        <label for="sessionDate">Session Date:</label>
+        <input type="date" id="sessionDate" title="Select the date for the session" required />
+        <textarea id="sessionNotes" placeholder="Notes"></textarea>
+        <button type="submit">➕ Add Session</button>
+      </form>
+      <div id="sessionsContainer"></div>
+    </section>
+  </main>
+
+  <!-- Modal Dialog -->
+  <div id="resourceModal" class="modal">
+    <div class="modal-content-wrapper">
+      <span class="close-btn">×</span>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 StudyConnect | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

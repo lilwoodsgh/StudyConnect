@@ -1,0 +1,271 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f8f1f1;
+    color: #333;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  header {
+    background-color: #305f72;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  nav a {
+    color: #f8f1f1;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  #menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #e5e5e5;
+  }
+  
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #305f72;
+    margin-bottom: 0.5rem;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .card h2 {
+    color: #305f72;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    background-color: #fdfdfd;
+  }
+  
+  footer {
+    background-color: #305f72;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  
+  /* Dark Mode */
+  body.dark-mode {
+    background-color: #1e293b;
+    color: #f1f5f9;
+  }
+  
+  body.dark-mode header,
+  body.dark-mode footer {
+    background-color: #111827;
+  }
+  
+  body.dark-mode nav a {
+    color: #f1f5f9;
+  }
+  
+  body.dark-mode .hero {
+    background-color: #334155;
+    color: #f1f5f9;
+  }
+  
+  body.dark-mode .card {
+    background-color: #1e293b;
+    color: #f1f5f9;
+  }
+  
+  body.dark-mode .card:hover {
+    background-color: #273549;
+  }
+  
+  /* Responsive Navigation */
+  @media (max-width: 768px) {
+    nav ul {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background-color: #305f72;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 1rem;
+    }
+  
+    nav ul.show {
+      display: flex;
+    }
+  
+    #menu-toggle {
+      display: block;
+    }
+  }
+  
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .modal-content-wrapper {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .close-btn {
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* Study Sessions Section */
+  .sessions {
+    padding: 1.5rem;
+  }
+
+  .sessions h2 {
+    color: #305f72;
+    margin-bottom: 1rem;
+  }
+
+  #sessionForm {
+    display: grid;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #sessionForm input, #sessionForm textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .session-card {
+    background-color: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .session-card h3 {
+    margin-bottom: 0.5rem;
+    color: #305f72;
+  }
+
+  .delete-btn {
+    background: #f76c6c;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+
+  /* Study Resources Section */
+  .resources {
+    padding: 1.5rem;
+  }
+
+  .resources h2 {
+    color: #305f72;
+    margin-bottom: 1rem;
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .resource-card {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .resource-card h3 {
+    color: #305f72;
+    margin-bottom: 0.5rem;
+  }
+
+  .resource-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .resource-card button {
+    background-color: #305f72;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .resource-card button:hover {
+    background-color: #25495c;
+  }
+
+  body.dark-mode .resource-card {
+    background-color: #1e293b;
+    color: #f1f5f9;
+  }
