@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudyConnect | Resources</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/resource.css" />
+  <script type="module" src="script/resource.js" defer></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">📚 StudyConnect</div>
+  <nav>
+    <button id="menu-toggle">☰</button>
+    <ul id="main-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resource.html" class="active">Resources</a></li>
+      <li><a href="sessions.html">Sessions</a></li>
+      <li><a href="favorites.html">Favorites</a></li>
+      <li><a href="#" id="theme-toggle">🌙</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search for a term...">
+    <button id="searchBtn">🔍 Search</button>
+  </section>
+
+  <section class="resources">
+    <h2>Available Resources</h2>
+    <div class="resource-grid" id="resourceGrid"></div>
+  </section>
+</main>
+
+<div id="resourceModal" class="modal">
+  <div class="modal-content-wrapper">
+    <span class="close-btn">×</span>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 StudyConnect</p>
+</footer>
+
+</body>
+</html>

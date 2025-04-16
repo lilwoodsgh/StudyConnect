@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudyConnect | Sessions</title>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/sessions.css" />
+  <script type="module" src="script/sessions.js" defer></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">📚 StudyConnect</div>
+  <nav>
+    <button id="menu-toggle">☰</button>
+    <ul id="main-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resource.html">Resources</a></li>
+      <li><a href="sessions.html" class="active">Sessions</a></li>
+      <li><a href="favorites.html">Favorites</a></li>
+      <li><a href="#" id="theme-toggle">🌙</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- Session Creation Form -->
+  <section class="new-session">
+    <h2>Create a New Session</h2>
+    <form id="sessionForm">
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" name="subject" required>
+
+      <label for="focus">Focus:</label>
+      <textarea id="focus" name="focus" placeholder="What are you focusing on?" required></textarea>
+
+      <label for="duration">Duration (minutes):</label>
+      <input type="number" id="duration" name="duration" min="1" placeholder="In minutes" required>
+
+      <button type="submit">Start Session</button>
+    </form>
+  </section>
+
+  <!-- Active Session Timer -->
+  <section class="active-session">
+    <h2>Active Session</h2>
+    <div id="timerDisplay">00:00</div>
+    <button id="startTimerBtn">Start</button>
+    <button id="endTimerBtn" disabled>End Session</button>
+  </section>
+
+  <!-- Session History -->
+  <section class="session-history">
+    <h2>Session History</h2>
+    <table id="sessionHistoryTable">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Focus</th>
+          <th>Duration</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic Session Rows will be inserted here -->
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 StudyConnect</p>
+</footer>
+
+</body>
+</html>
