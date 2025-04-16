@@ -127,3 +127,19 @@ fetchButton.addEventListener('click', async () => {
     openModal('An error occurred while fetching the definition.');
   }
 });
+
+// Navigation bar
+const navBar = `
+<nav>
+  <button id="menu-toggle">☰</button>
+  <ul id="main-nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resource.html">Resources</a></li>
+    <li><a href="sessions.html">Sessions</a></li>
+    <li><a href="favorites.html">Favorites</a></li>
+    <li><a href="#" id="theme-toggle">🌙</a></li>
+  </ul>
+</nav>
+`;
+
+document.body.insertAdjacentHTML('afterbegin', navBar);

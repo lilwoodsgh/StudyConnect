@@ -3,12 +3,8 @@ import { addFavorite } from './favorites.js';
 import { openModal, setupModalListeners } from './modal.js';
 
 // Dark mode + menu toggle setup
-const menuToggle = document.getElementById('menu-toggle');
-const mainNav = document.getElementById('main-nav');
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
-
-menuToggle.addEventListener('click', () => mainNav.classList.toggle('show'));
 
 themeToggle.addEventListener('click', () => {
   body.classList.toggle('dark-mode');
@@ -23,6 +19,14 @@ function updateThemeIcon() {
 console.log("resource.js loaded");
 
 document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const mainNav = document.getElementById('main-nav');
+
+  // Hamburger menu toggle logic
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('show');
+  });
+
   if (localStorage.getItem('studyConnectDarkMode') === 'enabled') {
     body.classList.add('dark-mode');
     updateThemeIcon();
